@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashton Milton</title>
+  <meta name="description" content="Research, writing, and academic work by Ashton Milton, focused on development governance, political economy, state capacity, inequality, South–South cooperation, and East and Southeast Asia." />
+  <style>
+    @font-face {
+      font-family: "Avenir Custom";
+      src: url("./fonts/Avenir-Ligh.woff") format("woff");
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Avenir Custom";
+      src: url("./fonts/Avenir-Book.woff") format("woff");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #183329;
+      --bg-deep: #10251e;
+      --panel: rgba(255, 255, 255, 0.055);
+      --panel-strong: rgba(255, 255, 255, 0.085);
+      --text: #f5f0e8;
+      --text-soft: #e1d9cf;
+      --muted: #b9c2bb;
+      --muted-2: #8f9c94;
+      --line: rgba(255, 255, 255, 0.13);
+      --accent: #9a3d3d;
+      --accent-bright: #b65757;
+      --accent-soft: rgba(154, 61, 61, 0.2);
+      --max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Avenir Custom", Avenir, "Avenir Next", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(154, 61, 61, 0.18), transparent 32%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      color: var(--text);
+      line-height: 1.74;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a, button {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    p {
+      color: var(--muted);
+      max-width: 74ch;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(24, 51, 41, 0.92);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 400;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.72rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links button {
+      background: transparent;
+      border: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      text-transform: inherit;
+      letter-spacing: inherit;
+    }
+
+    .nav-links button:hover,
+    .nav-links button.active,
+    .brand:hover {
+      color: var(--text);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .page {
+      display: none;
+      min-height: calc(100vh - 80px);
+      padding: 90px 0;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .home-page {
+      padding-top: 0;
+    }
+
+    section {
+      padding: 90px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .home-page section:last-child,
+    .page > section:last-child {
+      border-bottom: 0;
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 64px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      color: var(--accent-bright);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3.8rem, 9vw, 8.2rem);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      font-weight: 300;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      font-size: clamp(2.1rem, 4vw, 3.3rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      font-weight: 300;
+    }
+
+    h3 {
+      font-weight: 300;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-subtitle {
+      max-width: 720px;
+      font-size: clamp(1.25rem, 2vw, 1.72rem);
+      color: var(--text-soft);
+      line-height: 1.45;
+      margin-bottom: 34px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      border: 1px solid var(--line);
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: 0.2s ease;
+      display: inline-flex;
+      width: fit-content;
+      cursor: pointer;
+      background: transparent;
+      font-family: inherit;
+    }
+
+    .button:hover {
+      border-color: var(--accent-bright);
+      background: var(--accent-soft);
+    }
+
+    .hero-card,
+    .panel,
+    .interest-card,
+    .writing-card,
+    .cv-card,
+    .contact-box,
+    .essay-view {
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .hero-card {
+      padding: 30px;
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .meta-list {
+      display: grid;
+      gap: 22px;
+    }
+
+    .meta-item span,
+    .label {
+      display: block;
+      color: var(--muted-2);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .meta-item strong {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 0.42fr 1fr;
+      gap: 48px;
+      margin-bottom: 46px;
+    }
+
+    .section-header p {
+      font-size: 1.05rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.35fr;
+      gap: 26px;
+    }
+
+    .panel {
+      padding: 32px;
+    }
+
+    .panel h3 {
+      font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .interest-card,
+    .writing-card,
+    .cv-card {
+      padding: 26px;
+      transition: 0.2s ease;
+    }
+
+    .interest-card:hover,
+    .writing-card:hover {
+      background: var(--panel-strong);
+      border-color: rgba(182, 87, 87, 0.5);
+    }
+
+    .writing-card {
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      color: inherit;
+    }
+
+    .interest-card h3,
+    .writing-card h3,
+    .cv-card h3 {
+      font-size: 1.24rem;
+      margin-bottom: 12px;
+    }
+
+    .writing-card .category {
+      color: var(--accent-bright);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 18px;
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .list li::before {
+      content: "–";
+      color: var(--accent-bright);
+      margin-right: 10px;
+    }
+
+    .essay-view {
+      padding: 44px;
+    }
+
+    .essay-view h1 {
+      font-size: clamp(3rem, 7vw, 6.4rem);
+    }
+
+    .essay-meta {
+      color: var(--accent-bright);
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .essay-content {
+      max-width: 78ch;
+    }
+
+    .essay-content h3 {
+      font-size: 1.5rem;
+      margin: 34px 0 12px;
+    }
+
+    .essay-content p {
+      margin-bottom: 18px;
+      font-size: 1.03rem;
+    }
+
+    .contact-box {
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 24px 52px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 0.86rem;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 880px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero,
+      .section-header,
+      .split,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      section,
+      .page {
+        padding: 68px 0;
+      }
+
+      .home-page {
+        padding-top: 0;
+      }
+
+      .essay-view {
+        padding: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <button class="brand" onclick="showPage('home')">Ashton Milton</button>
+      <div class="nav-links">
+        <button data-nav="home" onclick="showPage('home')">Home</button>
+        <button data-nav="research" onclick="showPage('research')">Research</button>
+        <button data-nav="writing" onclick="showPage('writing')">Writing</button>
+        <button data-nav="cv" onclick="showPage('cv')">CV</button>
+        <button data-nav="contact" onclick="showPage('contact')">Contact</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div id="page-home" class="page home-page active">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Politics • Development • Governance</div>
+          <h1>Ashton Milton</h1>
+          <p class="hero-subtitle">
+            Politics and Sociology student working on development governance, state capacity, inequality, and South–South policy questions, with a regional focus on East and Southeast Asia.
+          </p>
+          <div class="button-row">
+            <button class="button" onclick="showPage('research')">View Research</button>
+            <button class="button" onclick="showPage('writing')">Read Writing</button>
+            <button class="button" onclick="showPage('cv')">View CV</button>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="meta-list">
+            <div class="meta-item">
+              <span>Current Focus</span>
+              <strong>Selective state capacity and investment-led development in Indonesia</strong>
+            </div>
+            <div class="meta-item">
+              <span>Academic Background</span>
+              <strong>Queen Mary University of London • Waseda University</strong>
+            </div>
+            <div class="meta-item">
+              <span>Research Direction</span>
+              <strong>Development governance, inequality, capacity development, and South–South cooperation</strong>
+            </div>
+          </div>
+          <p style="font-size: 0.92rem;">
+            This site collects research notes, essays, reading reflections, and academic work in progress. It is intended as a working intellectual archive rather than a finished publication list.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <div class="section-header">
+          <h2>Current Direction</h2>
+          <p>
+            My work is organised around a central question: how do states, especially in the Global South, build capacity unevenly while managing development, inequality, international economic pressure, and domestic institutional limits?
+          </p>
+        </div>
+        <div class="grid-3">
+          <article class="cv-card">
+            <h3>Development Governance</h3>
+            <p>How states manage economic transformation, public policy, infrastructure, social provision, and institutional coordination under growth pressure.</p>
+          </article>
+          <article class="cv-card">
+            <h3>Capacity Development</h3>
+            <p>How administrative, fiscal, welfare, and regulatory systems are built unevenly across sectors and over time.</p>
+          </article>
+          <article class="cv-card">
+            <h3>South–South Questions</h3>
+            <p>How countries across Asia, Africa, and the wider Global South learn from, compare with, and sometimes diverge from one another’s development trajectories.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div id="page-research" class="page">
+      <section>
+        <div class="section-header">
+          <h2>Research</h2>
+          <p>
+            My research focuses on development governance, institutional capacity, inequality, and political economy under accelerated growth. I am especially interested in why states may become capable in some domains while remaining limited in others.
+          </p>
+        </div>
+
+        <div class="split">
+          <div class="panel">
+            <div class="eyebrow">Current Dissertation</div>
+            <h3>Selective State Capacity under Accelerated Development</h3>
+            <p>Investment prioritisation, labour informalisation, and transitional inequality in Indonesia.</p>
+            <div class="tag-row">
+              <span class="tag">Indonesia</span>
+              <span class="tag">Inequality</span>
+              <span class="tag">State Capacity</span>
+              <span class="tag">Development</span>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Project Overview</h3>
+            <p>
+              This project examines how development states may strengthen investment-facing institutions while leaving labour, welfare, and redistributive institutions comparatively weak. Using Indonesia as a case study, the dissertation explores the relationship between investment prioritisation, labour informalisation, and transitional inequality.
+            </p>
+            <br />
+            <p>
+              The project is organised around the concept of selective state capacity: the uneven development of state capability across different institutional and policy domains. Rather than treating state capacity as a single national attribute, the project asks why some capacities develop earlier, faster, or more coherently than others.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-top: 18px;">
+          <article class="cv-card">
+            <h3>Research Question</h3>
+            <p>How does accelerated development produce uneven state capacity across investment, labour, welfare, and redistributive institutions?</p>
+          </article>
+          <article class="cv-card">
+            <h3>Working Argument</h3>
+            <p>Investment-oriented governance may strengthen because it directly supports growth and state legitimacy, while redistributive institutions remain politically and administratively harder to consolidate.</p>
+          </article>
+          <article class="cv-card">
+            <h3>Methodological Direction</h3>
+            <p>The project uses qualitative policy analysis, institutional analysis, and a case-study approach, supported by secondary data and policy literature.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-header">
+          <h2>Research Interests</h2>
+          <p>
+            These interests are connected by a broader concern with how development is governed, how capacity is built, and how inequality is produced or managed across the Global South.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="interest-card">
+            <h3>State Capacity & Capacity Development</h3>
+            <p>I am interested in how states build administrative, fiscal, welfare, and regulatory capacity over time. My work focuses less on whether a state is simply “strong” or “weak”, and more on how capacity develops unevenly across different institutions and policy areas.</p>
+          </article>
+
+          <article class="interest-card">
+            <h3>Development Governance</h3>
+            <p>I examine how governments manage economic transformation, infrastructure development, investment policy, labour regulation, and social provision under conditions of rapid growth and institutional constraint.</p>
+          </article>
+
+          <article class="interest-card">
+            <h3>South–South Cooperation & Comparison</h3>
+            <p>I am interested in how countries across Asia, Africa, Latin America, and the wider Global South compare, cooperate, and learn from one another’s development experiences. This includes policy transfer, development finance, infrastructure cooperation, and non-Western models of governance.</p>
+          </article>
+
+          <article class="interest-card">
+            <h3>Inequality, Redistribution & Social Protection</h3>
+            <p>A central concern in my work is how development can generate growth while leaving social protection, redistribution, labour rights, and welfare systems underdeveloped. I am interested in how inequality becomes institutionally reproduced.</p>
+          </article>
+
+          <article class="interest-card">
+            <h3>Labour Informality & Precarity</h3>
+            <p>I focus on the persistence of informal and precarious labour in high-growth economies. I am especially interested in how investment-led development models can weaken, bypass, or delay labour-protective institutions.</p>
+          </article>
+
+          <article class="interest-card">
+            <h3>Political Economy of Southeast Asia</h3>
+            <p>Southeast Asia is a core regional focus because it offers cases of accelerated but uneven development. Indonesia is my primary case study, with wider interests in ASEAN, middle-income development, and comparative Global South trajectories.</p>
+          </article>
+
+          <article class="interest-card">
+            <h3>Global Governance & International Development</h3>
+            <p>I am interested in how international organisations, regional institutions, development banks, and multilateral frameworks interact with domestic development priorities, especially across Asia and the Global South.</p>
+          </article>
+
+          <article class="interest-card">
+            <h3>East Asian Institutional Systems</h3>
+            <p>Living and studying in Japan has strengthened my interest in East Asian urban governance, public infrastructure, state coordination, and the everyday visibility of institutional capacity.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div id="page-writing" class="page">
+      <section>
+        <div class="section-header">
+          <h2>Writing</h2>
+          <p>
+            Essays, research notes, reading reflections, and policy-oriented writing. Each card opens as its own page within the site, so the writing section functions like a proper essay index without needing separate files.
+          </p>
+        </div>
+        <div id="essayGrid" class="grid-3"></div>
+      </section>
+    </div>
+
+    <div id="page-essay" class="page">
+      <article id="essayView" class="essay-view"></article>
+    </div>
+
+    <div id="page-cv" class="page">
+      <section>
+        <div class="section-header">
+          <h2>CV</h2>
+          <p>
+            Academic background, research interests, relevant coursework, skills, and current projects. A downloadable PDF CV can be added here once finalised.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="cv-card">
+            <h3>Education</h3>
+            <ul class="list">
+              <li>Queen Mary University of London, Politics and Sociology</li>
+              <li>Waseda University, Year Abroad</li>
+              <li>Academic focus: politics, sociology, public policy, and development</li>
+            </ul>
+          </article>
+
+          <article class="cv-card">
+            <h3>Research Interests</h3>
+            <ul class="list">
+              <li>Development governance</li>
+              <li>State capacity and capacity development</li>
+              <li>South–South cooperation</li>
+              <li>Inequality and social protection</li>
+            </ul>
+          </article>
+
+          <article class="cv-card">
+            <h3>Methods</h3>
+            <ul class="list">
+              <li>Qualitative policy analysis</li>
+              <li>Comparative case study</li>
+              <li>Institutional analysis</li>
+              <li>Literature synthesis</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top: 18px;">
+          <article class="cv-card">
+            <h3>Relevant Coursework</h3>
+            <ul class="list">
+              <li>Analysing Public Policy</li>
+              <li>Comparative Public Policy</li>
+              <li>Global Governance Studies</li>
+              <li>Political Institutions</li>
+              <li>Colonialism, Capitalism and Development</li>
+              <li>Politics of Southeast Asia</li>
+            </ul>
+          </article>
+
+          <article class="cv-card">
+            <h3>Academic Direction</h3>
+            <p>
+              My current academic direction is oriented towards postgraduate study in global public policy, with a focus on development governance, institutional capacity, inequality, and Asia-centred policy analysis.
+            </p>
+            <br />
+            <a class="button" href="#">Download CV</a>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div id="page-contact" class="page">
+      <section>
+        <div class="contact-box">
+          <div>
+            <div class="eyebrow">Contact</div>
+            <h2>Academic and research correspondence</h2>
+            <p style="margin-top: 18px;">For research, academic, or policy-related correspondence. This can later include a university email, LinkedIn, ORCID, Google Scholar, or a dedicated professional email address.</p>
+          </div>
+          <div>
+            <ul class="list">
+              <li>Email: hello@ashtonmilton.net</li>
+              <li>Location: London / Tokyo</li>
+              <li>Future: Shanghai</li>
+            </ul>
+            <br />
+            <a class="button" href="mailto:hello@ashtonmilton.net">Email Me</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <span>© Ashton Milton</span>
+    <span>Development • Governance • Political Economy</span>
+  </footer>
+
+  <script>
+    /*
+      HOW TO ADD A NEW ESSAY
+      1. Copy one essay block below, from { to },
+      2. Paste it underneath the others,
+      3. Change the id, category, title, description, date, and content.
+      4. Save the file. The essay card appears automatically on the Writing page.
+
+      Keep each id simple: lowercase words with hyphens.
+      Example: id: "developmental-states"
+    */
+
+    const essays = [
+      {
+        id: "why-indonesia",
+        category: "Research Essay",
+        title: "Why Indonesia?",
+        description: "Notes on scale, development, institutional contradiction, and why Indonesia provides a useful case for studying selective state capacity.",
+        date: "Working note",
+        content: `
+          <p>Indonesia offers a useful case for examining the contradictions of accelerated development. It combines scale, regional variation, democratic contestation, investment pressure, and persistent institutional unevenness.</p>
+          <p>For my current research, Indonesia matters because it allows the study of state capacity as something differentiated rather than uniform. The state may be capable in some areas while remaining comparatively weak in others.</p>
+          <h3>Core research relevance</h3>
+          <p>The country’s investment-facing institutions, labour governance reforms, welfare arrangements, and decentralised administrative structures create a strong setting for examining selective state capacity.</p>
+        `
+      },
+      {
+        id: "selective-state-capacity",
+        category: "Conceptual Note",
+        title: "What Is Selective State Capacity?",
+        description: "An early explanation of uneven capacity-building across investment, labour, welfare, and redistributive institutions.",
+        date: "Conceptual note",
+        content: `
+          <p>Selective state capacity refers to the uneven development of state capability across different institutional and policy domains.</p>
+          <p>Rather than asking whether a state is simply strong or weak, the concept asks where the state is strong, where it is weak, and why those differences emerge.</p>
+          <h3>Why it matters</h3>
+          <p>This is particularly useful for analysing development contexts in which governments can coordinate infrastructure, attract investment, or support industrial expansion while struggling to regulate labour, expand welfare, or reduce inequality.</p>
+        `
+      },
+      {
+        id: "south-south-cooperation",
+        category: "Research Note",
+        title: "South–South Cooperation and Development Learning",
+        description: "Early notes on policy learning, development finance, infrastructure cooperation, and Global South comparison.",
+        date: "Research note",
+        content: `
+          <p>South–South cooperation is important because it shifts attention away from development as a one-directional process led by Western institutions. It allows comparison between states that have faced related constraints around capacity, inequality, infrastructure, and global economic dependence.</p>
+          <p>For my work, the concept is useful because it opens a route into Asia–Africa comparison, development finance, policy transfer, and the political limits of institutional learning.</p>
+          <h3>Research relevance</h3>
+          <p>The key question is not simply whether countries cooperate, but what kinds of capacity, policy models, and development strategies are transferred, adapted, or resisted.</p>
+        `
+      },
+      {
+        id: "power-capacity-gap",
+        category: "Research Fragment",
+        title: "The Power–Capacity Gap",
+        description: "Early notes on the mismatch between economic scale and institutional or social capacity.",
+        date: "Research fragment",
+        content: `
+          <p>The power–capacity gap is a working idea for examining the mismatch between a country’s economic scale or geopolitical importance and the maturity of its domestic institutional and social systems.</p>
+          <p>This may be especially relevant for large middle-income states whose economic weight rises faster than their bureaucratic, welfare, tax, labour, and redistributive capacities.</p>
+          <h3>Possible use</h3>
+          <p>The concept may later support comparative work on Asia, Africa, and other parts of the Global South, particularly where rapid growth creates expectations that institutions cannot yet meet.</p>
+        `
+      }
+    ];
+
+    const pages = ["home", "research", "writing", "essay", "cv", "contact"];
+    const essayGrid = document.getElementById("essayGrid");
+    const essayView = document.getElementById("essayView");
+
+    function showPage(page) {
+      pages.forEach(name => {
+        document.getElementById(`page-${name}`).classList.toggle("active", name === page);
+      });
+
+      document.querySelectorAll("[data-nav]").forEach(button => {
+        button.classList.toggle("active", button.dataset.nav === page);
+      });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      history.replaceState(null, "", page === "home" ? "#home" : `#${page}`);
+    }
+
+    function renderEssayCards() {
+      essayGrid.innerHTML = essays.map(essay => `
+        <button class="writing-card" type="button" onclick="openEssay('${essay.id}')">
+          <div class="category">${essay.category}</div>
+          <h3>${essay.title}</h3>
+          <p>${essay.description}</p>
+        </button>
+      `).join("");
+    }
+
+    function openEssay(id) {
+      const essay = essays.find(item => item.id === id);
+      if (!essay) return;
+
+      essayView.innerHTML = `
+        <button class="button" type="button" onclick="showPage('writing')">Back to Writing</button>
+        <br><br>
+        <div class="essay-meta">${essay.category} • ${essay.date}</div>
+        <h1>${essay.title}</h1>
+        <div class="essay-content">${essay.content}</div>
+      `;
+
+      showPage("essay");
+      history.replaceState(null, "", `#essay-${essay.id}`);
+    }
+
+    function loadFromHash() {
+      const hash = window.location.hash.replace("#", "");
+      if (hash.startsWith("essay-")) {
+        openEssay(hash.replace("essay-", ""));
+      } else if (pages.includes(hash)) {
+        showPage(hash);
+      } else {
+        showPage("home");
+      }
+    }
+
+    renderEssayCards();
+    loadFromHash();
+    window.addEventListener("hashchange", loadFromHash);
+  </script>
+</body>
+</html>
